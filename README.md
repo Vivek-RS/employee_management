@@ -23,5 +23,5 @@ python -m venv myenv
 5. Run database migrations:
   python manage.py migrate
 
-6. Start the development server:
+6. Start  development server:
    python manage.py runserver
