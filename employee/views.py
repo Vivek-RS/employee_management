@@ -86,6 +86,7 @@ class TicketGetCreateAPIView(APIView):
     def post(self, request):
         serializer = TicketSerializer(data=request.data)
         if serializer.is_valid():
+            #serializer.data == {} return response ticket created no employee to be assigned
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)   
@@ -124,3 +125,10 @@ class TicketEmployeesAPIView(APIView):
             response_list.append(response_dict)
         return Response(response_list)
 
+class UnassignedTicketsAPIView(APIView):
+    """
+    """
+    def get(self, request):
+        ticket = Ticket.objects.filter(assigned_to = None)
+        serializer = TicketSerializer(ticket, many=True)
+        return Response(serializer.data)

@@ -68,12 +68,14 @@ class TicketSerializer(serializers.Serializer):
         """
         ticket = Ticket.objects.create(**validated_data)
         available_employees = Employee.objects.filter(is_available=True)
+        #else return  {}
         if available_employees:
             employee = Employee.objects.filter(is_available=True).first()
             ticket.assigned_to=employee
             ticket.save()
             employee.is_available=False
             employee.save()
+
         return ticket
 
     def update(self, instance, validated_data):

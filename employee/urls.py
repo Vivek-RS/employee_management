@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import EmployeeUpdateDeleteAPIView, ShiftGetCreateAPIView, EmployeeGetCreateAPIView, TicketGetCreateAPIView, TicketUpdateDeleteAPIView, ShiftUpdateDeleteAPIView, TicketEmployeesAPIView
+from .views import (EmployeeUpdateDeleteAPIView, ShiftGetCreateAPIView, EmployeeGetCreateAPIView, TicketGetCreateAPIView,
+                    TicketUpdateDeleteAPIView, ShiftUpdateDeleteAPIView, TicketEmployeesAPIView,UnassignedTicketsAPIView)
 
 urlpatterns = [
     path('employee/<int:pk>/', EmployeeUpdateDeleteAPIView.as_view()),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('ticket_dash/', TicketEmployeesAPIView.as_view()),
     path('ticket/', TicketGetCreateAPIView.as_view()),
     path('shift', ShiftGetCreateAPIView.as_view()),
+    path('unassigned_tickets/',UnassignedTicketsAPIView.as_view())
 ]
